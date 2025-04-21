@@ -56,6 +56,12 @@ $(`.compactTrackListItem__trackTitle[data-permalink-path^="/${ARTIST}/"]`).each(
   },
 );
 
+/* ─── 2b. SORT ALPHABETICALLY (case‑insensitive) ───────────────────────── */
+
+tracks.sort((a, b) =>
+  a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
+);
+
 /* ─── 3. WRITE tracks.ts ───────────────────────────────────────────────── */
 
 if (!tracks.length) {
@@ -79,5 +85,5 @@ writeFileSync(
 );
 
 console.log(
-  `✔ tracks.ts written with ${tracks.length} entries for "${ARTIST}"`,
+  `✔ tracks.ts written with ${tracks.length} alphabetised entries for "${ARTIST}"`,
 );
